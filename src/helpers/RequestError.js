@@ -12,12 +12,4 @@ const requestError = (status, message = messages[status])=>{
   return error;
 };
 
-// class ValidationError extends Error {
-//   constructor(message){
-//     super(message)
-//     this.status = 400;
-
-//   }
-// }
-
 module.exports = requestError
