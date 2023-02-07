@@ -7,8 +7,8 @@ const addContactController = async (request, response) => {
     email,
     phone,
   }=request.body
-
-  await addContact({name, email, phone})
+  const {_id: owner} = request.user
+  await addContact({name, email, phone}, owner)
 
   response.json({status: 'success'});
 };

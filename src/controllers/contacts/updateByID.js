@@ -7,8 +7,9 @@ const updateByIDController = async (request, response) => {
     email,
     phone,
   }=request.body
-  const {id} = request.params
-  const result = await updateContact(id, {name, email, phone})
+  const {id: contactId} = request.params
+  const {_id: owner} = request.user
+  const result = await updateContact(contactId, {name, email, phone}, owner)
   response.status(200).json(result)
 };
 
