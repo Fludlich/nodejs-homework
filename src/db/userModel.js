@@ -20,6 +20,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  newAvatar:{
+    type: Object,
+    default: {
+      id: Number,
+      avatarUrl: String,
+      created: Date,
+    }
+  },
 });
 
 userSchema.pre("save", async function () {

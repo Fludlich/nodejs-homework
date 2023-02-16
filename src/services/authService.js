@@ -3,8 +3,8 @@ const jsonwebtoken = require('jsonwebtoken');
 const {User} = require('../db/userModel');
 const {requestError} = require('../helpers')
 
-const registration = async (email, password, subscription) => {
-    const user = new User({email, password, subscription})
+const registration = async (email, password, subscription, newAvatar) => {
+    const user = new User({email, password, subscription, newAvatar})
     const emailInUse = await User.findOne({email});
     if(emailInUse){
         throw requestError(409, `Email in use`)

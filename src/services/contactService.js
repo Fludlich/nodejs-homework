@@ -13,7 +13,10 @@ const getContacts = async (owner, {skip, limit, sort}) => {
 };
 
 const getContactByID = async (contactId, owner) => {
+  
+  
   const contact = await Contact.findOne({_id:contactId, owner})
+
   if (!contact) {
     throw requestError(404, 'Not found')
   }
