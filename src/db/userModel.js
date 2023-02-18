@@ -28,6 +28,14 @@ const userSchema = new mongoose.Schema({
       created: Date,
     }
   },
+  verify: {
+    type: Boolean,
+    default: false,
+  },
+  verificationToken: {
+    type: String,
+    required: [true, 'Verify token is required'],
+  },
 });
 
 userSchema.pre("save", async function () {

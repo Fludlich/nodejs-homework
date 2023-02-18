@@ -3,6 +3,8 @@ const path = require("path");
 const { nanoid } = require("nanoid");
 const { User } = require("../db/userModel");
 const Jimp = require("jimp");
+const PORT = process.env.PORT
+
 
 const avatarDir = path.join(__dirname, "../", "public", "avatars/");
 
@@ -25,9 +27,7 @@ const upload = async (request) => {
       throw err;
     }
   });
-
-  const avatarUrl = path.join(avatarDir, originalname);
-  console.log(avatarUrl)
+  const avatarUrl = `http://localhost:${PORT}/api/avatars/${originalname}`
   const newAvatar = {
     id: nanoid(),
     ...request.body,

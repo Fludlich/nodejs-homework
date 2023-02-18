@@ -1,5 +1,6 @@
 const Jimp = require("jimp");
-const avatarRe = async (tempUpload,originalname) => {
+const avatarDir = path.join(__dirname, "../", "public", "avatars/");
+const avatarRe = async (tempUpload, originalname) => {
 
       await Jimp.read(tempUpload)
       .then((photo) => {
@@ -16,3 +17,5 @@ const avatarRe = async (tempUpload,originalname) => {
  };
 
  module.exports = {avatarRe}
+
+ console.log(avatarDir)

@@ -24,7 +24,7 @@ const {controllWrapper} = require('../../helpers');
 const authMiddleware = require('../../middlewares/authMiddleware');
 
 
-router.patch('/',authMiddleware, uploadMiddleware.single('avatar'), controllWrapper(uploadController));
+router.patch('/', authMiddleware, uploadMiddleware.single('avatar'), controllWrapper(uploadController));
 router.use('/', express.static(avatarDir));
 
 
