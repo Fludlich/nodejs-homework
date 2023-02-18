@@ -27,7 +27,7 @@ const upload = async (request) => {
       throw err;
     }
   });
-  const avatarUrl = `http://localhost:${PORT}/api/avatars/${originalname}`
+  const avatarUrl = `http://localhost:${PORT}/avatars/${originalname}`
   const newAvatar = {
     id: nanoid(),
     ...request.body,
