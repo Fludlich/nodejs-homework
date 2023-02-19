@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 const fs = require("fs/promises");
 const path = require("path");
 const { nanoid } = require("nanoid");
@@ -5,21 +6,29 @@ const { User } = require("../db/userModel");
 const Jimp = require("jimp");
 const PORT = process.env.PORT
 
+=======
+const fs = require('fs/promises');
+const path = require('path');
+const {nanoid} = require('nanoid');
+const {User} = require('../db/userModel');
+const Jimp = require('jimp');
+const PORT = process.env.PORT
+>>>>>>> Stashed changes
 
-const avatarDir = path.join(__dirname, "../", "public", "avatars/");
+const avatarDir = path.join(__dirname, '../', 'public', 'avatars/');
 
 const created = new Date(Date.now());
 
 const upload = async (request) => {
-  const { path: tempUpload, originalname } = request.file;
+  const {path: tempUpload, originalname} = request.file;
 
   const image = await Jimp.read(tempUpload)
-    .then((photo) => {
-      return photo.resize(250, 250);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+      .then((photo) => {
+        return photo.resize(250, 250);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   image.write(`${avatarDir}${originalname}`);
 
   await fs.unlink(tempUpload, (err) => {
@@ -27,7 +36,13 @@ const upload = async (request) => {
       throw err;
     }
   });
+<<<<<<< Updated upstream
   const avatarUrl = `http://localhost:${PORT}/avatars/${originalname}`
+=======
+
+  const avatarUrl = `http://locahost:${PORT}/avatars/${originalname}`
+
+>>>>>>> Stashed changes
   const newAvatar = {
     id: nanoid(),
     ...request.body,
@@ -35,7 +50,7 @@ const upload = async (request) => {
     created,
   };
   const id = request.user._id;
-  await User.findOneAndUpdate({ _id: id }, { $set: { newAvatar } });
+  await User.findOneAndUpdate({_id: id}, {$set: {newAvatar}});
   return newAvatar;
 };
 

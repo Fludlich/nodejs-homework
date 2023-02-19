@@ -5,17 +5,15 @@ const {addSchema, updateFavoriteSchema} = require('../schemas/contacts')
 
 const getContacts = async (owner, {skip, limit, sort}) => {
   const result = await Contact.find({owner})
-  .select({__v: 0})
-  .skip(parseInt(skip))
-  .limit(parseInt(limit))
-  .sort(sort)
+      .select({__v: 0})
+      .skip(parseInt(skip))
+      .limit(parseInt(limit))
+      .sort(sort)
   return result
 };
 
 const getContactByID = async (contactId, owner) => {
-  
-  
-  const contact = await Contact.findOne({_id:contactId, owner})
+  const contact = await Contact.findOne({_id: contactId, owner})
 
   if (!contact) {
     throw requestError(404, 'Not found')
@@ -38,7 +36,7 @@ const updateContact = async (contactId, {name, email, phone}, owner) => {
   if (error) {
     throw requestError(400, 'Missing fields')
   }
-  const result = await Contact.findOneAndUpdate({_id:contactId, owner},
+  const result = await Contact.findOneAndUpdate({_id: contactId, owner},
       {$set: {name, email, phone}})
   if (!result) {
     throw requestError(404, 'Not found')
@@ -52,7 +50,8 @@ const updateFavorite = async (contactId, {favorite}, owner) => {
   if (error) {
     throw requestError(400, 'Missing fields')
   }
-  const result = await Contact.findOneAndUpdate({_id: contactId, owner}, {$set: {favorite}})
+  const result = await Contact.findOneAndUpdate(
+      {_id: contactId, owner}, {$set: {favorite}})
   if (!result) {
     throw requestError(404, 'Not found')
   }

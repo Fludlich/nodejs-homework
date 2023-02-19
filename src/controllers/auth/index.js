@@ -8,11 +8,18 @@ const {resendVerifyingEmailController} = require('./resendVerifyingEmail.js')
 
 
 module.exports = {
+<<<<<<< Updated upstream
     registrationController,
     loginController,
     logout,
     current,
     verifaingEmailController,
     resendVerifyingEmailController,
+=======
+  registrationController,
+  loginController,
+  logout,
+  current,
+>>>>>>> Stashed changes
 }
 
