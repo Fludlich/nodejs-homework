@@ -1,19 +1,9 @@
-<<<<<<< Updated upstream
-const fs = require("fs/promises");
-const path = require("path");
-const { nanoid } = require("nanoid");
-const { User } = require("../db/userModel");
-const Jimp = require("jimp");
-const PORT = process.env.PORT
-
-=======
 const fs = require('fs/promises');
 const path = require('path');
 const {nanoid} = require('nanoid');
 const {User} = require('../db/userModel');
 const Jimp = require('jimp');
 const PORT = process.env.PORT
->>>>>>> Stashed changes
 
 const avatarDir = path.join(__dirname, '../', 'public', 'avatars/');
 
@@ -36,13 +26,9 @@ const upload = async (request) => {
       throw err;
     }
   });
-<<<<<<< Updated upstream
-  const avatarUrl = `http://localhost:${PORT}/avatars/${originalname}`
-=======
 
   const avatarUrl = `http://locahost:${PORT}/avatars/${originalname}`
 
->>>>>>> Stashed changes
   const newAvatar = {
     id: nanoid(),
     ...request.body,

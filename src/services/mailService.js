@@ -14,6 +14,10 @@ const verifaingEmail = async (verificationToken)=>{
 }
 
 const resendVerifyingEmail = async (name, email, password, verificationToken)=>{
+  if(!email || !name || !password){
+    console.log('privet')
+    throw requestError(400, "Missing required fields")
+  }
   const user = await User.findOne({email});
   if (!user) {
     throw requestError(401, `Email or password is wrong`)
