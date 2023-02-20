@@ -3,7 +3,7 @@ const router = new express.Router();
 const path = require('path');
 const multer = require('multer');
 const controllWrapper = require('../../helpers/controllWrapper');
-const authMiddleware = require('../../middlewares/authMiddleware');
+const {authMiddleware} = require('../../middlewares');
 const {
   registrationController,
   loginController,

@@ -22,12 +22,8 @@ const registrationController = async (request, response) => {
   }
   const verificationToken = nanoid()
   await registration(
-      name,
-      email,
-      password,
-      subscr,
-      newAvatar,
-      verificationToken);
+      name, email, password, subscr, newAvatar, verificationToken
+      );
   response.status(201).json({
     'user': {
       email: email,

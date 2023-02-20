@@ -2,6 +2,7 @@ const {mailHandler} = require('../nodemailer/nodemailer');
 const {User} = require('../db/userModel');
 const {requestError} = require('../helpers')
 const bcrypt = require('bcrypt');
+const {resendVerificationEmail} = require('../schemas/contacts')
 
 const verifaingEmail = async (verificationToken)=>{
   const user = await User.findOne({verificationToken});
@@ -14,10 +15,13 @@ const verifaingEmail = async (verificationToken)=>{
 }
 
 const resendVerifyingEmail = async (name, email, password, verificationToken)=>{
-  if(!email || !name || !password){
-    console.log('privet')
-    throw requestError(400, "Missing required fields")
+  const {error} = resendVerificationEmail.validate({name, email, password})
+  if (error) {
+    throw requestError(400, 'Missing fields')
   }
+  // if(!email || !name || !password){
+  //   throw requestError(400, "Missing required fields")
+  // }
   const user = await User.findOne({email});
   if (!user) {
     throw requestError(401, `Email or password is wrong`)

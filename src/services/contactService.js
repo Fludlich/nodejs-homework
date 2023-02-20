@@ -2,7 +2,6 @@ const {Contact} = require('../db/contactModel');
 const {requestError} = require('../helpers')
 const {addSchema, updateFavoriteSchema} = require('../schemas/contacts')
 
-
 const getContacts = async (owner, {skip, limit, sort}) => {
   const result = await Contact.find({owner})
       .select({__v: 0})
