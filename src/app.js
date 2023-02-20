@@ -5,10 +5,9 @@ require('dotenv').config()
 
 const {postRouter} = require('./routes/api/contacts');
 const {authRouter} = require('./routes/api/authRouter');
-//const {avatarRouter} = require('./routes/api/avatarRouter');
 
 const app = express();
-app.use(express.static("public"))
+app.use(express.static('public'));
 
 const formatLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
@@ -18,7 +17,6 @@ app.use(express.json());
 
 app.use('/api/contacts', postRouter)
 app.use('/api/users', authRouter)
-//app.use('/api/avatars', avatarRouter)
 
 app.use(( request, response ) =>{
   response.status(404).json({message: 'Not found'})
